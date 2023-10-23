@@ -11,6 +11,7 @@ public class InputController : MonoBehaviour
 
     private Transform cameraPivot;
     private Vector3 localRotation;
+    private Vector3 lastMousePos = Vector3.zero;
 
     private BigCube bigCube;
     private GameObject firstHit;
@@ -34,6 +35,8 @@ public class InputController : MonoBehaviour
 
     void LateUpdate()
     {
+        Vector2 mouseDelta = Input.mousePosition - lastMousePos;
+
         // Check if the cube was touched
         Ray whatCubeTouched = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit initialTest = new RaycastHit();
@@ -82,18 +85,21 @@ public class InputController : MonoBehaviour
             }
         }
 
-        //else {
-        //// Operate the camera orbit movement
-        //if (PlayerSettings.CameraDisable && !PlayerSettings.SettingsOn && !PlayerSettings.GameWon && !PlayerSettings.GyroOn) {
-        //    if (Input.touchCount == 1 &&
-        //        !(Input.touches[0].position.x > Screen.width * 0.80 && Input.touches[0].position.y < Screen.height * 0.20) &&
-        //        !(Input.touches[0].position.x < Screen.width * 0.20 && Input.touches[0].position.y < Screen.height * 0.20)) {
-        //        localRotation.x += Input.touches[0].deltaPosition.x;
-        //        localRotation.y -= Input.touches[0].deltaPosition.y;
+        if (Input.GetMouseButton(1))
+        {
+            // Operate the camera orbit movement
+            if (PlayerSettings.CameraDisable && !PlayerSettings.SettingsOn && !PlayerSettings.GameWon && !PlayerSettings.GyroOn)
+            {
+                if (!(Input.mousePosition.x > Screen.width * 0.80 && Input.mousePosition.y < Screen.height * 0.20) &&
+                    !(Input.mousePosition.x < Screen.width * 0.20 && Input.mousePosition.y < Screen.height * 0.20))
+                {
+                    localRotation.x += mouseDelta.x;
+                    localRotation.y -= mouseDelta.y;
 
-        //        PlayerSettings.CubeRotation = true;
-        //    }
-        //}
+                    PlayerSettings.CubeRotation = true;
+                }
+            }
+        }
 
         //// Deal with zoom in and zoom out
         //if (Input.touchCount == 2 && !PlayerSettings.SettingsOn && !PlayerSettings.GameWon) {
@@ -110,14 +116,16 @@ public class InputController : MonoBehaviour
         //    }
         //}
 
-        //// Actual Camera Rig Transformation
-        //if (PlayerSettings.CubeRotation) {
-        //    Quaternion targetLocation = Quaternion.Euler(localRotation.y, localRotation.x, 0f);
-        //    this.cameraPivot.rotation = Quaternion.Slerp(this.cameraPivot.rotation, targetLocation, Time.deltaTime * orbitDampening);
-        //}
+        // Actual Camera Rig Transformation
+        if (PlayerSettings.CubeRotation)
+        {
+            Quaternion targetLocation = Quaternion.Euler(localRotation.y, localRotation.x, 0f);
+            this.cameraPivot.rotation = Quaternion.Slerp(this.cameraPivot.rotation, targetLocation, Time.deltaTime * orbitDampening);
+        }
 
-        //PlayerSettings.CubeRotation = false;
-        //}
+        PlayerSettings.CubeRotation = false;
+
+        lastMousePos = Input.mousePosition;
     }
 
     private bool ConfirmWhichRotation(Vector3 normal, Vector3 tester, Vector3 move, char axis)
