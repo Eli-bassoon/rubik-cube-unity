@@ -7,11 +7,11 @@ using UnityEngine.EventSystems;
 
 public class SmallCube : MonoBehaviour
 {
-    int numWrap = 9;
+    int numWrap = 5;
 
     public Material[] materials;
     private Cubelet[] cubelets;
-    public TextMeshPro[] texts;
+    public CubeNumber[] cubeNumbers;
     public int number
     {
         get
@@ -21,13 +21,9 @@ public class SmallCube : MonoBehaviour
         set
         {
             _number = ((value - 1) % numWrap + numWrap) % numWrap + 1;
-            foreach (var text in texts)
+            foreach (var cubeNumber in cubeNumbers)
             {
-                text.text = _number.ToString();
-                if (_number == 6 || _number == 9)
-                {
-                    text.text = $"<u>{text.text}</u>";
-                }
+                cubeNumber.SetNumber(_number);
             }
         }
     }
@@ -41,7 +37,7 @@ public class SmallCube : MonoBehaviour
         {
             cubelets[i].direction = (CubeletDirection)Enum.Parse(typeof(CubeletDirection), cubelets[i].name, true);
         }
-        texts = GetComponentsInChildren<TextMeshPro>();
+        cubeNumbers = GetComponentsInChildren<CubeNumber>();
     }
 
     private void Start()
@@ -166,44 +162,44 @@ public class SmallCube : MonoBehaviour
     {
         for (int i = 0; i < cubelets.Length; i++)
         {
-            if (cubelets[i].inPlay)
-            {
-                if (cubelets[i].direction == CubeletDirection.Bottom)
-                {
-                    cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.Bottom];
-                    cubelets[i].color = CubeletColors.Yellow;
-                }
-                if (cubelets[i].direction == CubeletDirection.Top)
-                {
-                    cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.Top];
-                    cubelets[i].color = CubeletColors.White;
-                }
-                if (cubelets[i].direction == CubeletDirection.North)
-                {
-                    cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.North];
-                    cubelets[i].color = CubeletColors.Green;
-                }
-                if (cubelets[i].direction == CubeletDirection.South)
-                {
-                    cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.South];
-                    cubelets[i].color = CubeletColors.Blue;
-                }
-                if (cubelets[i].direction == CubeletDirection.East)
-                {
-                    cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.East];
-                    cubelets[i].color = CubeletColors.Red;
-                }
-                if (cubelets[i].direction == CubeletDirection.West)
-                {
-                    cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.West];
-                    cubelets[i].color = CubeletColors.Orange;
-                }
-            }
-            else
-            {
+            //if (cubelets[i].inPlay)
+            //{
+            //    if (cubelets[i].direction == CubeletDirection.Bottom)
+            //    {
+            //        cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.Bottom];
+            //        cubelets[i].color = CubeletColors.Yellow;
+            //    }
+            //    if (cubelets[i].direction == CubeletDirection.Top)
+            //    {
+            //        cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.Top];
+            //        cubelets[i].color = CubeletColors.White;
+            //    }
+            //    if (cubelets[i].direction == CubeletDirection.North)
+            //    {
+            //        cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.North];
+            //        cubelets[i].color = CubeletColors.Green;
+            //    }
+            //    if (cubelets[i].direction == CubeletDirection.South)
+            //    {
+            //        cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.South];
+            //        cubelets[i].color = CubeletColors.Blue;
+            //    }
+            //    if (cubelets[i].direction == CubeletDirection.East)
+            //    {
+            //        cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.East];
+            //        cubelets[i].color = CubeletColors.Red;
+            //    }
+            //    if (cubelets[i].direction == CubeletDirection.West)
+            //    {
+            //        cubelets[i].GetComponent<MeshRenderer>().material = materials[(int)CubeletDirection.West];
+            //        cubelets[i].color = CubeletColors.Orange;
+            //    }
+            //}
+            //else
+            //{
                 cubelets[i].GetComponent<MeshRenderer>().material = materials[materials.Length - 1];
                 cubelets[i].color = CubeletColors.Black;
-            }
+            //}
         }
     }
 

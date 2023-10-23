@@ -46,60 +46,74 @@ public class BigCube : MonoBehaviour
 
     public bool CheckWinCondition()
     {
-        List<Cubelet> cubelets = new List<Cubelet>();
+        //List<Cubelet> cubelets = new List<Cubelet>();
+        //for (int z = 0; z < PlayerSettings.CubeSize; z++)
+        //{
+        //    for (int y = 0; y < PlayerSettings.CubeSize; y++)
+        //    {
+        //        for (int x = 0; x < PlayerSettings.CubeSize; x++)
+        //        {
+        //            smallCubes[x, y, z].GetCubeletsInPlay(cubelets);
+        //        }
+        //    }
+        //}
+
+        //CubeletColors southColor = CubeletColors.Black;
+        //CubeletColors northColor = CubeletColors.Black;
+        //CubeletColors eastColor = CubeletColors.Black;
+        //CubeletColors westColor = CubeletColors.Black;
+        //CubeletColors topColor = CubeletColors.Black;
+        //CubeletColors bottomColor = CubeletColors.Black;
+        //foreach (Cubelet cubelet in cubelets)
+        //{
+        //    if (cubelet.direction == CubeletDirection.South)
+        //        southColor = cubelet.color;
+        //    if (cubelet.direction == CubeletDirection.North)
+        //        northColor = cubelet.color;
+        //    if (cubelet.direction == CubeletDirection.East)
+        //        eastColor = cubelet.color;
+        //    if (cubelet.direction == CubeletDirection.West)
+        //        westColor = cubelet.color;
+        //    if (cubelet.direction == CubeletDirection.Top)
+        //        topColor = cubelet.color;
+        //    if (cubelet.direction == CubeletDirection.Bottom)
+        //        bottomColor = cubelet.color;
+        //}
+
+        //foreach (Cubelet cubelet in cubelets)
+        //{
+        //    if (cubelet.direction == CubeletDirection.South)
+        //        if (cubelet.color != southColor)
+        //            return false;
+        //    if (cubelet.direction == CubeletDirection.North)
+        //        if (cubelet.color != northColor)
+        //            return false;
+        //    if (cubelet.direction == CubeletDirection.East)
+        //        if (cubelet.color != eastColor)
+        //            return false;
+        //    if (cubelet.direction == CubeletDirection.West)
+        //        if (cubelet.color != westColor)
+        //            return false;
+        //    if (cubelet.direction == CubeletDirection.Top)
+        //        if (cubelet.color != topColor)
+        //            return false;
+        //    if (cubelet.direction == CubeletDirection.Bottom)
+        //        if (cubelet.color != bottomColor)
+        //            return false;
+        //}
+
         for (int z = 0; z < PlayerSettings.CubeSize; z++)
         {
             for (int y = 0; y < PlayerSettings.CubeSize; y++)
             {
                 for (int x = 0; x < PlayerSettings.CubeSize; x++)
                 {
-                    smallCubes[x, y, z].GetCubeletsInPlay(cubelets);
+                    if (smallCubes[x, y, z].number != 1)
+                    {
+                        return false;
+                    }
                 }
             }
-        }
-
-        CubeletColors southColor = CubeletColors.Black;
-        CubeletColors northColor = CubeletColors.Black;
-        CubeletColors eastColor = CubeletColors.Black;
-        CubeletColors westColor = CubeletColors.Black;
-        CubeletColors topColor = CubeletColors.Black;
-        CubeletColors bottomColor = CubeletColors.Black;
-        foreach (Cubelet cubelet in cubelets)
-        {
-            if (cubelet.direction == CubeletDirection.South)
-                southColor = cubelet.color;
-            if (cubelet.direction == CubeletDirection.North)
-                northColor = cubelet.color;
-            if (cubelet.direction == CubeletDirection.East)
-                eastColor = cubelet.color;
-            if (cubelet.direction == CubeletDirection.West)
-                westColor = cubelet.color;
-            if (cubelet.direction == CubeletDirection.Top)
-                topColor = cubelet.color;
-            if (cubelet.direction == CubeletDirection.Bottom)
-                bottomColor = cubelet.color;
-        }
-
-        foreach (Cubelet cubelet in cubelets)
-        {
-            if (cubelet.direction == CubeletDirection.South)
-                if (cubelet.color != southColor)
-                    return false;
-            if (cubelet.direction == CubeletDirection.North)
-                if (cubelet.color != northColor)
-                    return false;
-            if (cubelet.direction == CubeletDirection.East)
-                if (cubelet.color != eastColor)
-                    return false;
-            if (cubelet.direction == CubeletDirection.West)
-                if (cubelet.color != westColor)
-                    return false;
-            if (cubelet.direction == CubeletDirection.Top)
-                if (cubelet.color != topColor)
-                    return false;
-            if (cubelet.direction == CubeletDirection.Bottom)
-                if (cubelet.color != bottomColor)
-                    return false;
         }
 
         return true;

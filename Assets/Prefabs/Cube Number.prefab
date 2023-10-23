@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5568009423886162405}
   - component: {fileID: 1812644746082552161}
   - component: {fileID: 8886457412008401219}
+  - component: {fileID: 6713897956845247852}
   m_Layer: 0
   m_Name: Cube Number
   m_TagString: Untagged
@@ -109,8 +110,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279934946
-  m_fontColor: {r: 0.8867924, g: 0.6242774, b: 0.10373794, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -172,3 +173,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1812644746082552161}
   m_maskType: 0
+--- !u!114 &6713897956845247852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062991313946727046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6009a1eebfbf88144a07f8525aa9ac2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numColors:
+  - {r: 0.8679245, g: 0.12609467, b: 0.12609467, a: 1}
+  - {r: 0.8773585, g: 0.48126924, b: 0.094357364, a: 1}
+  - {r: 0.9622642, g: 0.9331705, b: 0.11256671, a: 1}
+  - {r: 0.18868512, g: 0.8773585, b: 0.15229617, a: 1}
+  - {r: 0.1342826, g: 0.578477, b: 0.8679245, a: 1}
