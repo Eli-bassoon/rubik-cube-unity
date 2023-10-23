@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour {
       bigCubeInstance = Instantiate(bigCubePrefab) as BigCube;
       bigCubeInstance.transform.position = transform.position;
       bigCubeInstance.GenerateCube();
-      Invoke("ScrambleCube", 0.5f);
    }
 	
 	// Update is called once per frame
